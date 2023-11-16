@@ -18,7 +18,7 @@ st.title("DIP Switch Converter")
 
 while True:
     try:
-        pb_adr = st.number_input('Enter PROFIBUS address:', value=0, step=1, format="%d", min_value=0, max_value=255, key="pb_adr", help="3-digit number", width=3)       
+        pb_adr = st.number_input('Enter PROFIBUS address:', value=0, step=1, format="%d", min_value=0, max_value=126, key="pb_adr", help="3-digit number")       
     except ValueError:
         st.warning("Enter a valid integer.")
         continue
