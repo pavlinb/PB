@@ -1,5 +1,7 @@
 import streamlit as st
 
+dip_sw = ['   ', ' 64', ' 32', ' 16', '  8', '  4', '  2', '  1']
+
 def dip_sw_convert(num):
     binary_digits = list("{0:08b}".format(num))
     for i in range(7, -1, -1):
