@@ -7,10 +7,10 @@ def dip_sw_convert(num):
     for i in range(7, -1, -1):
         if binary_digits[i] == '0':
             binary_digits[i] = 'OFF'
-            st.markdown(f"{dip_sw[i]} <span style='color:red; margin-left: 20px'>{binary_digits[i]}</span>", unsafe_allow_html=True)
+            st.markdown(f"{dip_sw[i]} <span style='color:red; margin-left: 20px'><b>{binary_digits[i]}</b></span>", unsafe_allow_html=True)
         else:
             binary_digits[i] = 'ON'
-            st.markdown(f"{dip_sw[i]} <span style='color:green'>{binary_digits[i]}</span>", unsafe_allow_html=True)
+            st.markdown(f"{dip_sw[i]} <span style='color:green'><b>{binary_digits[i]}</b></span>", unsafe_allow_html=True)
     return binary_digits
 
 # Streamlit app code
