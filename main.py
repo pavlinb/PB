@@ -18,12 +18,12 @@ st.title("DIP Switch Converter")
 
 while True:
     try:
-        pb_adr = st.number_input('Enter PROFIBUS address:', value=0, step=1)       
+        pb_adr = st.number_input('Въведете PROFIBUS адрес:', value=4, step=1)       
     except ValueError:
-        st.warning("Enter a valid integer.")
+        st.warning("Въведете цяло число.")
         continue
     else:
         break
 
-st.write('Settings:\n')
+st.write('Настройки:\n')
 dip_sw_convert(pb_adr)
