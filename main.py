@@ -6,8 +6,8 @@ def dip_sw_convert(num):
     binary_digits = list("{0:08b}".format(num))
     for i in range(7, -1, -1):
         if binary_digits[i] == '0':
-            binary_digits[i] = '  OFF'
-            st.write(f"{dip_sw[i]} {binary_digits[i]}")
+            binary_digits[i] = 'OFF'
+            st.markdown(f"{dip_sw[i]} <span style='color:red; margin-left: 20px'>{binary_digits[i]}</span>", unsafe_allow_html=True)
         else:
             binary_digits[i] = 'ON'
             st.markdown(f"{dip_sw[i]} <span style='color:green'>{binary_digits[i]}</span>", unsafe_allow_html=True)
