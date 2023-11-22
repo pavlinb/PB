@@ -1,29 +1,43 @@
 import streamlit as st
 
-dip_sw = ['   ', ' 64', ' 32', ' 16', '  8', '  4', '  2', '  1']
+# Global Constant
+DIP_SW = ['   ', ' 64', ' 32', ' 16', '  8', '  4', '  2', '  1']
 
-def dip_sw_convert(num):
+def format_dip_switch(dip_val, color, message):
+    """
+    Helper function to format the output message for Dip Switch Value.
+    """
+    return f"{DIP_SW[dip_val]} <span style='color:{color}'><b>{message}</b></span>"
+
+def convert_to_dip_switch(num):
+    """
+    Convert given number to binary and display corresponding dip switch status.
+    """
+    # Convert given number to binary and store into list
     binary_digits = list("{0:08b}".format(num))
+
+    # Iterate binary digits backwards
     for i in range(7, -1, -1):
-        if binary_digits[i] == '0':
-            binary_digits[i] = 'OFF'
-            st.markdown(f"{dip_sw[i]} <span style='color:red; margin-left: 20px'><b>{binary_digits[i]}</b></span>", unsafe_allow_html=True)
-        else:
-            binary_digits[i] = 'ON'
-            st.markdown(f"{dip_sw[i]} <span style='color:green'><b>{binary_digits[i]}</b></span>", unsafe_allow_html=True)
-    return binary_digits
+        # Display different messages based on the binary digit
+        switch_status = format_dip_switch(i, 'red', 'OFF') if binary_digits[i] == '0' \
+                        else format_dip_switch(i, 'green', 'ON')
+        st.markdown(switch_status, unsafe_allow_html=True)
 
-# Streamlit app code
-st.title("DIP Switch Converter")
+def app():
+    """
+    Main App Function
+    """
+    st.title("Professional DIP Switch Converter")
 
-while True:
     try:
-        pb_adr = st.number_input('Въведете PROFIBUS адрес:', value=4, step=1)       
-    except ValueError:
-        st.warning("Въведете цяло число.")
-        continue
-    else:
-        break
+        # User Input for PROFIBUS Address
+        pb_address = st.number_input('Въведете PROFIBUS адрес:', min_value=0, value=4, step=1)
+        # Show the switch settings
+        st.write('Настройки: ')
+        convert_to_dip_switch(pb_address)
+    except Exception as e:
+        # Show error message for any exception
+        st.error('Error: ' + str(e))
 
-st.write('Настройки:\n')
-dip_sw_convert(pb_adr)
+if __name__ == "__main__":
+    app()
