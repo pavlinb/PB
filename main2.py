@@ -21,7 +21,7 @@ st.title("DIP Switch Converter")
 
 while True:
     try:
-        pb_adr = st.number_input('Въведете PROFIBUS адрес:', value=4, step=1)       
+        pb_adr = st.number_input('Въведете PROFIBUS адрес:', min_value=0, max_value=126, value=4, step=1)       
     except ValueError:
         st.warning("Въведете цяло число.")
         continue
